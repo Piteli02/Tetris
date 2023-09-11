@@ -1,0 +1,1 @@
+A função dessa pasta eh armazenar todos os arquivos CSS utilizados para estilizar os arquivos HTML
