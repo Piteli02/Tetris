@@ -1,0 +1,1 @@
+A função dessa pasta eh armazenar todos os videos de acordo com cada entrega realizada.
