@@ -233,14 +233,22 @@ input {
   margin-top: 10px;
 }
 
-.containerCadastro .contentCadastro .containerConta span {
+#encaminha_home{
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#encaminha_home span{
   font-family: 'DM Mono', monospace;
   font-weight: 400;
   font-size: 14px;
   margin-right: 10px;
 }
 
-.containerCadastro .contentCadastro .containerConta a {
+#encaminha_home a{
+  margin-left: 5px;
   font-family: 'DM Mono', monospace;
   font-weight: 500;
   text-decoration: none;
@@ -248,4 +256,3 @@ input {
   font-size: 14px;
   font-style: italic;
 }
-
