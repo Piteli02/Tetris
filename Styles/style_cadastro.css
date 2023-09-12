@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+body {
+    background-color: #e2f8ed;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+input:focus {
+  outline: 0;
+}
+
+input {
+  padding-left: 5px;
+}
+
+.containerCinza {
+  width: 55vw;
+  height: 87vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #707070;
+  border-radius: 20px;
+  border: 1px solid #000;
+}
+
+.containerCadastro {
+  width: 40vw;
+  height: 80vh;
+  background-color: #A9C869;
+  border-radius: 20px;
+  border: 1px solid #000;
+}
+
+.containerCadastro .contentCadastro {
+  max-width: 40vw;
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.containerCadastro h1 {
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+}
+
+.containerCadastro .line {
+  width: 300px;
+  height: 1px;
+  background-color: #000;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.containerCadastro .cadastro_nome {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerCadastro .cadastro_nome label {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.containerCadastro .cadastro_nome input {
+  border: 1px solid #000;
+  background-color: #A9C869;
+  height: 25px;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.containerCadastro .contentCadastro .cadastro_dtnasc-tel {
+  display: flex;
+  margin-top: 10px;
+  max-width: 400px;
+  margin-left: -10px;
+}
+
+.containerCadastro .contentCadastro .cadastro_dtnasc-tel label {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.containerCadastro .contentCadastro .dt_nascimento {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.containerCadastro .contentCadastro .dt_nascimento input {
+  border: 1px solid #000;
+  background-color: #A9C869;
+  height: 25px;
+  border-radius: 5px;
+  width: 170px;
+}
+
+.containerCadastro .contentCadastro .tel {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerCadastro .contentCadastro .tel input {
+  border: 1px solid #000;
+  background-color: #A9C869;
+  height: 25px;
+  border-radius: 5px;
+  width: 195px;
+}
+
+.containerCadastro .contentCadastro .cadastro_cpf {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.containerCadastro .contentCadastro .cadastro_cpf input {
+  border: 1px solid #000;
+  background-color: #A9C869;
+  height: 25px;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.containerCadastro .contentCadastro .cadastro_cpf label {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.containerCadastro .contentCadastro .cadastro_email {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.containerCadastro .contentCadastro .cadastro_email input {
+  border: 1px solid #000;
+  background-color: #A9C869;
+  height: 25px;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.containerCadastro .contentCadastro .cadastro_email label {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.containerCadastro .contentCadastro .cadastro_username {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.containerCadastro .contentCadastro .cadastro_username input {
+  border: 1px solid #000;
+  background-color: #A9C869;
+  height: 25px;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.containerCadastro .contentCadastro .cadastro_username label {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.containerCadastro .contentCadastro .senha {
+  display: flex;
+  margin-top: 10px;
+  max-width: 400px;
+  margin-left: -10px;
+}
+
+.containerCadastro .contentCadastro .senha label {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.containerCadastro .contentCadastro .cadastro_senha {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.containerCadastro .contentCadastro .cadastro_senha input {
+  border: 1px solid #000;
+  background-color: #A9C869;
+  height: 25px;
+  border-radius: 5px;
+  width: 170px;
+}
+
+.containerCadastro .contentCadastro .confirma_senha input {
+  border: 1px solid #000;
+  background-color: #A9C869;
+  height: 25px;
+  border-radius: 5px;
+  width: 190px;
+}
+
+.containerCadastro .contentCadastro .cadastrar input {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  width: 300px;
+  height: 40px;
+  border-radius: 5px;
+  margin-top: 20px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.containerCadastro .contentCadastro .containerConta {
+  display: flex;
+  margin-top: 10px;
+}
+
+.containerCadastro .contentCadastro .containerConta span {
+  font-family: 'DM Mono', monospace;
+  font-weight: 400;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.containerCadastro .contentCadastro .containerConta a {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  font-style: italic;
+}
+

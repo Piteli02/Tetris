@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+body {
+    background-color: #e2f8ed;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.containerCinza {
+  width: 70vw;
+  height: 87vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #707070;
+  border-radius: 20px;
+  border: 1px solid #000;
+}
+
+.containerCinza button {
+  background-color: #181818;
+  border: none;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  font-size: 20px;
+  color: #fff;
+  width: 120px;
+  height: 40px;
+  margin-right: 750px;
+  margin-bottom: 480px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.containerRanking {
+  width: 40vw;
+  height: 80vh;
+  background-color: #A9C869;
+  border-radius: 20px;
+  border: 1px solid #000;
+  position: absolute;
+}
+
+.containerRanking .contentRanking {
+  max-width: 40vw;
+  max-height: 75vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.containerRanking .contentRanking .tableRanking {
+  max-width: 40vw;
+  max-height: 70vh;
+  height: 70vw;
+  overflow-y: auto;
+}
+
+.containerRanking .contentRanking .tableRanking::-webkit-scrollbar {
+  width: 10px; 
+}
+
+.containerRanking .contentRanking .tableRanking::-webkit-scrollbar-thumb {
+  background-color: #000000; /* Cor do puxador (a parte que você arrasta) */
+  border-radius: 6px; /* Borda arredondada do puxador */
+}
+
+.containerRanking .contentRanking .tableRanking::-webkit-scrollbar-track {
+  background-color: #819555; /* Cor da trilha (a parte da barra de rolagem onde o puxador se move) */
+}
+
+.containerRanking h1 {
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.containerRanking .line {
+  width: 300px;
+  height: 1px;
+  background-color: #000;
+  margin-bottom: 20px;
+}
+
+table {
+  max-height: 80vh;
+  max-width: 40vw;
+  width: 35vw;
+}
+
+table .no_background {
+  background-color: transparent;
+}
+
+table tr {
+  width: 40vw;
+  height: 30px;
+  background-color: #819555;
+  
+}
+
+table th {
+  font-family: 'DM Mono', monospace;
+  font-weight: 600;
+}
+
+table td {
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+  text-align: center;
+}
