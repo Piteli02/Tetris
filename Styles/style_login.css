@@ -61,7 +61,7 @@ form{
     background-color: #A9C869;
     border-radius: 10em;
     border-style: groove;
-    background-image: url(../img/icone_login.png);
+    background-image: url(../Assets/icone_login.png);
     background-repeat: no-repeat;
     background-position: left;
     background-size: 1.3em;
@@ -82,7 +82,7 @@ form{
     background-color: #A9C869;
     border-radius: 10em;
     border-style: groove;
-    background-image: url(../img/cadeado\ 1.png);
+    background-image: url(../Assets/cadeado\ 1.png);
     background-repeat: no-repeat;
     background-position: left;
     background-size: 1.3em;
