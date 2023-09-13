@@ -1,0 +1,1 @@
+A função dessa pasta eh armazenar todas as imagens e recursos utilizadas como assets do projeto
