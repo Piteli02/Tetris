@@ -214,19 +214,27 @@ input {
   width: 190px;
 }
 
-.containerCadastro .contentCadastro .cadastrar input {
+.containerCadastro .contentCadastro .cadastrar{
   background-color: #000;
-  color: #fff;
   border: none;
   width: 300px;
   height: 40px;
   border-radius: 5px;
   margin-top: 20px;
-  font-family: 'DM Mono', monospace;
-  font-weight: 500;
-  font-size: 20px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.containerCadastro .contentCadastro .cadastrar a{
+color: white;
+font-family: 'DM Mono', monospace;
+font-weight: 500;
+font-size: 20px;
+text-decoration: none;
+}
+
 
 .containerCadastro .contentCadastro .containerConta {
   display: flex;
