@@ -30,9 +30,12 @@
     <main>
         <div class="container">
             <div class="container_jogo_principal">
+
+                <!--Aqui será usada a tag canva-->
                 <div class="container_tabuleiro">
-                    <img src="Assets/tabuleiro10x20.png" alt="imagem de tabuleiro 10x20">
+                    <canvas id="mirror_tetris" width="200" height="400"></canvas>
                 </div>
+
                 <div class="container_estatisticas">
                     <div class="container_template">
                         <p>Pontos</p>
@@ -116,5 +119,7 @@
             </div>
         </div>
     </main>
+
+    <script src="Js/jogo_10x20.js"></script>
 </body>
 </html>
