@@ -202,7 +202,6 @@ function desenharQuadrado(x, y, cor){
 }
 
 definirTabuleiro(); 
-
 function Peca(nome_peca, cor){
     this.nome_peca = nome_peca;
     this.cor = cor;
@@ -213,11 +212,11 @@ function Peca(nome_peca, cor){
     this.x = 3;
     this.y = 0;
 }
-
-const gerarPecaAleatoria = Math.floor(Math.random() * 7); //apenas testando os parametros. Estou gerando um numero de 0 a 6, então, a cada vez que salvarmos o arquivo, aparecerá uma peca aleatoria
-let peca = new Peca(pecasJogo[gerarPecaAleatoria][0],        pecasJogo[gerarPecaAleatoria][1]); //instanciando a peça    
+const PecaAleatoria = Math.floor(Math.random() * 7); //apenas testando os parametros. Estou gerando um numero de 0 a 6, então, a cada vez que salvarmos o arquivo, aparecerá uma peca aleatoria
+let peca = new Peca(pecasJogo[PecaAleatoria][0],        pecasJogo[PecaAleatoria][1]); //instanciando a peça    
                     //coletando nome         //coletando cor
 
+//////////////FUNCOES DA "CLASSE" PECA/////////////////
 Peca.prototype.desenhar_forma = function(){
 
     for(lin = 0; lin < this.pecaAtiva.length; lin++){
@@ -230,10 +229,45 @@ Peca.prototype.desenhar_forma = function(){
     }
 }
 
+Peca.prototype.apagar_forma = function(){
+    for(lin = 0; lin < this.pecaAtiva.length; lin++){
 
-//enquanto o operador new instanciou a minha "classe" Peca
-//prototype me permitiu acessar as variaveis dessa classe e criar o metodo desenhar_forma()
-//Testando o uso desse metodo
+        for(col = 0; col < this.pecaAtiva.length; col++){
+            if(this.pecaAtiva[lin][col]){
+                desenharQuadrado(this.x + col, this.y + lin, quadradoLivre);
+            }
+        }                   
+    }
+}
+
+Peca.prototype.descer_peca = function(){
+    this.apagar_forma();
+    this.y++;
+    this.desenhar_forma();
+}
+/////////////////////////////////////////////////////////
+
+let tempo_tabuleiro = document.querySelector("#tempo_tabuleiro"); //será util para criarmos a function atualizarTempo nas proximas versoes
+let tempo_anterior = Date.now();
+let velocidade_atual = 1000;
+function descer_peca_automaticamente(){
+    let tempo_atual = Date.now();
+    let variacao = tempo_atual - tempo_anterior;
+    if (variacao > velocidade_atual){
+        peca.descer_peca();
+        tempo_anterior = Date.now();
+    }
+    requestAnimationFrame(descer_peca_automaticamente);
+}
+
+
+
+/****************************************
+******************************************/
+
+
+/****************************************
+CHAMANDO AS FUNCOES
+******************************************/
 peca.desenhar_forma();
-/***************************************
- * ************************************/
+descer_peca_automaticamente();
