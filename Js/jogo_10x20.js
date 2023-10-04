@@ -21,29 +21,29 @@ DEFININDO AS PECAS POSSIVEIS E SUAS ROTACOES
 ************************************/
 const peca_I = [
     [
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0],
-        [0, 1, 0, 0]
-    ],
-    [
-        [0, 0, 0, 0],
-        [1, 1, 1, 1],
-        [0, 0, 0, 0],
-        [0, 0, 0, 0]
-    ],
-    [
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0],
-        [0, 0, 1, 0]
-    ],
-    [
-        [0, 0, 0, 0],
-        [0, 0, 0, 0],
-        [1, 1, 1, 1],
-        [0, 0, 0, 0]
-    ]
+		[0, 0, 0, 0],
+		[1, 1, 1, 1],
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+	],
+	[
+		[0, 0, 1, 0],
+		[0, 0, 1, 0],
+		[0, 0, 1, 0],
+		[0, 0, 1, 0],
+	],
+	[
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+		[1, 1, 1, 1],
+		[0, 0, 0, 0],
+	],
+	[
+		[0, 1, 0, 0],
+		[0, 1, 0, 0],
+		[0, 1, 0, 0],
+		[0, 1, 0, 0],
+	]
 ];
 
 const peca_O = [
@@ -196,12 +196,13 @@ function desenharQuadrado(x, y, cor){
     ctx.fillRect(tamQuadrado * x, tamQuadrado * y, tamQuadrado, tamQuadrado);
     
 
-    ctx.strokeStyle = "BLACK"
+    ctx.strokeStyle = "BLACK";
     ctx.strokeRect(tamQuadrado * x, tamQuadrado * y, tamQuadrado, tamQuadrado);
     
 }
 
 definirTabuleiro(); 
+
 function Peca(nome_peca, cor){
     this.nome_peca = nome_peca;
     this.cor = cor;
@@ -210,11 +211,15 @@ function Peca(nome_peca, cor){
                 
     //coordenadas
     this.x = 3;
-    this.y = 0;
+    this.y = -2;
 }
-const PecaAleatoria = Math.floor(Math.random() * 7); //apenas testando os parametros. Estou gerando um numero de 0 a 6, então, a cada vez que salvarmos o arquivo, aparecerá uma peca aleatoria
-let peca = new Peca(pecasJogo[PecaAleatoria][0],        pecasJogo[PecaAleatoria][1]); //instanciando a peça    
+function gerarPecaAleatoria(){
+    let PecaAleatoria = Math.floor(Math.random() * 7); //apenas testando os parametros. Estou gerando um numero de 0 a 6, então, a cada vez que salvarmos o arquivo, aparecerá uma peca aleatoria
+    return new Peca(pecasJogo[PecaAleatoria][0],   pecasJogo[PecaAleatoria][1]); //instanciando a peça    
                     //coletando nome         //coletando cor
+                    
+}
+let peca = gerarPecaAleatoria();
 
 //////////////METODOS DA "CLASSE" PECA/////////////////
 Peca.prototype.desenhar_forma = function(){
@@ -241,46 +246,132 @@ Peca.prototype.apagar_forma = function(){
 }
 
 Peca.prototype.descer_peca = function(){
-    this.apagar_forma();
-    this.y++;
-    this.desenhar_forma();
-}
-
-Peca.prototype.moverEsquerda = function(){//mesmo molde, apenas diminuir o eixo x
-    this.apagar_forma();
-    this.x--;
-    this.desenhar_forma();
-}
-
-Peca.prototype.moverDireita = function(){
-    this.apagar_forma();
-    this.x++; //ir para direita -> incrementar o atributo que indica o eixo x da peca atual
-    this.desenhar_forma();
-}
-
-Peca.prototype.girarPeca = function(){
     
-    if (this.nome_peca !== peca_O && this.nome_peca !== peca_Especial){
-        
-        if(this.rotacao_atual !== 3){
-            this.apagar_forma();
-            this.rotacao_atual++;
-            this.pecaAtiva = this.nome_peca[this.rotacao_atual];
-            this.desenhar_forma();
-        } else{
-            this.apagar_forma();
-            this.rotacao_atual = 0;
-            this.pecaAtiva = this.nome_peca[this.rotacao_atual];
-            this.desenhar_forma();
-        }
+    if(!this.colisaoPeca(0, 1, this.pecaAtiva)){
+        this.apagar_forma();
+        this.y++;
+        this.desenhar_forma();
+    } else{ //peca atingiu algo, necessario gerar outra no topo
+        this.fixacaoPeca();
+        peca = gerarPecaAleatoria();
+        console.log("A peca aleatoria gerada foi " + this.pecaAtiva);
     }
 }
 
+Peca.prototype.moverEsquerda = function(){//mesmo molde, apenas diminuir o eixo x
+    
+    if(!this.colisaoPeca(-1, 0, this.pecaAtiva)){
+        this.apagar_forma();
+        this.x--;
+        this.desenhar_forma();
+    }
+    
+}
 
+Peca.prototype.moverDireita = function(){
+    if(!this.colisaoPeca(1, 0, this.pecaAtiva)){
+        this.apagar_forma();
+        this.x++; //ir para direita -> incrementar o atributo que indica o eixo x da peca atual
+        this.desenhar_forma();
+    }
+    
+}
+
+Peca.prototype.girarPeca = function(){
+    let rotacao_seguinte = this.nome_peca[(this.rotacao_atual + 1) % this.nome_peca.length];
+    let acertou_barreira_dir = false;
+    let acertou_barreira_esq = false;
+    let empurrar = 0;
+
+    if(this.colisaoPeca(0, 0, rotacao_seguinte)){ //se a colisao ocorreu, nesse bloco if, descobre-se o lado em que ocorreu
+        if(this.x > COLUNA / 2){
+            acertou_barreira_dir = true;
+            empurrar = -1;
+        }else{
+            acertou_barreira_esq = true;
+            empurrar = 1;
+        }
+    }
+    if(!this.colisaoPeca(empurrar, 0, rotacao_seguinte)){
+        /*
+        if (this.nome_peca !== peca_O && this.nome_peca !== peca_Especial){
+        
+            if(this.rotacao_atual !== 3){
+                this.apagar_forma();
+                this.x = this.x + empurrar;
+                this.rotacao_atual++;
+                this.pecaAtiva = this.nome_peca[this.rotacao_atual];
+                this.desenhar_forma();
+            } else{
+                this.apagar_forma();
+                this.x = this.x + empurrar;
+                this.rotacao_atual = 0;
+                this.pecaAtiva = this.nome_peca[this.rotacao_atual];
+                this.desenhar_forma();
+            }
+        }*/
+        
+        this.apagar_forma();
+        this.x += empurrar;
+        this.rotacao_atual = (this.rotacao_atual + 1) % this.nome_peca.length;
+        this.pecaAtiva = this.nome_peca[this.rotacao_atual];
+        this.desenhar_forma();
+    }
+    
+}
+
+Peca.prototype.colisaoPeca = function(x, y, peca){
+    for(lin = 0; lin < peca.length; lin++){
+
+        for(col = 0; col < peca.length; col++){
+            if(!peca[lin][col]){
+                continue;
+            }  //achou um quadrado que não esta livre
+
+                let atualizaX = this.x + col + x; //x recebido no parametro
+                let atualizaY = this.y + lin + y; //y recebido no parametro
+
+                //criando barreiras que delimitam o tabuleiro
+                if (atualizaX >= COLUNA || atualizaX < 0 || atualizaY >= LINHA){
+                    return true;
+                }
+                if(atualizaY < 0){
+                    continue;
+                }
+                if(tabuleiro[atualizaY][atualizaX] != quadradoLivre){
+                    return true;
+                }
+            
+        }                   
+    }
+    return false;
+}
+
+Peca.prototype.fixacaoPeca = function(){
+    for(lin = 0; lin < this.pecaAtiva.length; lin++){
+
+        for(col = 0; col < this.pecaAtiva.length; col++){
+            if(!this.pecaAtiva[lin][col]){
+                console.log("valor de gameover eh: "+ gameOver);
+                continue;
+            }
+            //verificando fim de jogo
+            if(this.y + lin < 0){
+                alert("Game Over"); //Quem for fazer tela game over deve alterar essa parte
+                gameOver = true;
+                console.log("valor de gameover eh: "+ gameOver);
+                break;
+            }
+            //pintando o canvas com essa peca que caiu
+            tabuleiro[this.y+lin][this.x+col] = this.cor;
+        }                   
+    }
+}
 /////////////////////////////////////////////////////////
 
 let tempo_tabuleiro = document.querySelector("#tempo_tabuleiro"); //será util para criarmos a function atualizarTempo nas proximas versoes
 let tempo_anterior = Date.now();
+let gameOver = false;
 let velocidade_atual = 1000;
 let save_velocidade_atual;
 
@@ -291,12 +382,14 @@ function descer_peca_automaticamente(){
         peca.descer_peca();
         tempo_anterior = Date.now();
     }
-    requestAnimationFrame(descer_peca_automaticamente);
+    if(!gameOver){
+        requestAnimationFrame(descer_peca_automaticamente);
+    }
 }
 
 function descerRapido(){
     save_velocidade_atual = velocidade_atual;
-    velocidade_atual = velocidade_atual / 6;  //aumentar o denominador caso desejar queda mais rapida
+    velocidade_atual = velocidade_atual / 20;  //aumentar o denominador caso desejar queda mais rapida
 }
 
 function restaurarVelocidade(){
@@ -375,7 +468,7 @@ document.addEventListener("keyup", function(event) {
 /****************************************
 CHAMANDO AS FUNCOES
 ******************************************/
-peca.desenhar_forma();
+
 descer_peca_automaticamente();
 
 
