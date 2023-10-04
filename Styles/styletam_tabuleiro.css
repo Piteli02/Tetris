@@ -86,26 +86,25 @@ hr{
 }
 
 .botao {
-    display: flex;
-    justify-content: center;
-    margin-top: 90px;
+    margin-top: 50px;
     position: absolute;
     left: 50%;
-    width: 300px;
-    height: 40px;
     transform: translateX(-50%);
     background-color: #000;
-    text-align: center;
     border-radius: 30px;
-    align-items: center;
 }
 
-.botao a{
+.botao a {
     text-decoration: none;
     color: white;
+    width: 300px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.jogar{
+.jogar {
     background-color: black;
     width: 300px;
     height: 40px;
@@ -113,6 +112,13 @@ hr{
     border: none;
     color: white;
 }
+
 .jogar:hover {
     cursor: pointer; 
+}
+
+.container .segundoback article h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

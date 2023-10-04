@@ -5,7 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./Styles/styletam_tabuleiro.css" rel="stylesheet">
     <title>Mirror Tetris</title>
-</head>         
+    <style>
+    /* CSS para posicionar as imagens sobre as imagens de fundo */
+    .tabuleiro {
+        position: relative;
+        
+    }
+
+    .tabuleiro img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .tabuleiro .selected-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 50%; /* Defina o tamanho máximo desejado, como 50% */
+        max-height: 50%; /* Defina o tamanho máximo desejado, como 50% */
+        opacity: 0; /* Inicialmente, a imagem está invisível */
+        z-index: 1; /* Certifique-se de que o contêiner da imagem selecionada está acima da imagem de fundo */
+    }
+
+</style>
+    <script>
+        // Função para lidar com a seleção da opção
+        function selecionarOpcao(element) {
+            // Ocultar todos os contêineres de imagem selecionada
+            var selectedContainers = document.querySelectorAll('.tabuleiro .selected-container');
+            selectedContainers.forEach(function(container) {
+                container.style.opacity = 0;
+            });
+
+            // Exibir o contêiner da imagem da opção selecionada
+            var selectedContainer = element.querySelector('.selected-container');
+            selectedContainer.style.opacity = 1;
+        }
+    </script>
+</head>
 <body>
     <div class="container">
         <div class="segundoback"> 
@@ -13,20 +51,44 @@
                 <h1> Tamanho do Tabuleiro</h1>
                 <hr>
             </section>
-            <article class="tabuleiro">
-                    <img src="./Assets/tabuleiro22x44.png" alt="Tabuleiro 22x44">
-                    <h2>22 X 44</h2>
+            <article class="tabuleiro" onclick="selecionarOpcao(this)">
+                <img src="./Assets/tabuleiro22x44.png" alt="Tabuleiro 22x44">
+                <div class="selected-container">
+                    <img src="./Assets/selected.png" alt="Imagem Selecionada 1">
+                </div>
+                <h2>22 X 44</h2>
             </article>
 
-            <article class="tabuleiro">
-                    <img src="./Assets/tabuleiro10x20.jpeg" alt="Tabuleiro 10x20">
-                    <h2>10 X 20</h2>
+            <article class="tabuleiro" onclick="selecionarOpcao(this)">
+                <img src="./Assets/tabuleiro10x20.jpeg" alt="Tabuleiro 10x20">
+                <div class="selected-container">
+                    <img src="./Assets/selected.png" alt="Imagem Selecionada 2">
+                </div>
+                <h2>10 X 20</h2>
             </article>
             <div class="botao">
-               <a href="tela_jogo_10x20.html">JOGAR</a>
+                <a href="#" onclick="iniciarJogo()">JOGAR</a>
             </div>
         </div>
     </div>
 
+    <script>
+        // Função para iniciar o jogo com base na opção selecionada
+        function iniciarJogo() {
+            var selectedContainers = document.querySelectorAll('.tabuleiro .selected-container');
+            
+            // Verifique qual opção foi selecionada
+            if (selectedContainers[0].style.opacity === '1') {
+                // Opção 22x44 foi selecionada, redirecione para a tela correspondente
+                window.location.href = "tela_jogo_22x40.html";
+            } else if (selectedContainers[1].style.opacity === '1') {
+                // Opção 10x20 foi selecionada, redirecione para a tela correspondente
+                window.location.href = "tela_jogo_10x20.html";
+            } else {
+                // Nenhuma opção selecionada, exiba uma mensagem de erro ou ação padrão.
+                alert("Por favor, selecione um tamanho de tabuleiro.");
+            }
+        }
+    </script>
 </body>
 </html>
