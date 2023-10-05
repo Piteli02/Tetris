@@ -30,38 +30,42 @@
     <main>
         <div class="container">
             <div class="container_jogo_principal">
+
+                <!--Aqui será usada a tag canva-->
                 <div class="container_tabuleiro">
-                    <img src="Assets/tabuleiro10x20.png" alt="imagem de tabuleiro 10x20">
+                    <canvas id="mirror_tetris" width="200" height="400"></canvas>
                 </div>
+
                 <div class="container_estatisticas">
                     <div class="container_template">
                         <p>Pontos</p>
                         <hr>
-                        <p>0</p>     
+                        <p id="pontos">0</p>     
                     </div>
 
                     <div class="container_template">
                         <p>Nível</p>
                         <hr>
-                        <p>0</p>
+                        <p id="nivel">1</p>
                     </div>
 
                     <div class="container_template">
                         <p>Lines</p>
                         <hr>
-                        <p>0</p>
+                        <p id="linhas">0</p>    
                     </div>
 
                     <div class="container_template">
-                        <p>Tempo</p>
+                        <p id="tempo_tabuleiro">Tempo</p>
                         <hr>
-                        <p>00:00</p>
+                        <p id="cronometro">00:00</p>
+
                     </div>
 
                     <div class="container_template">
                         <p>Prox</p>
                         <hr>
-                        <img src="Assets/PECA.png" alt="imagem de peça tetris">
+                        <div id="proxima-peca" class="peca-I"></div>
                     </div>
                 </div>
             </div>
@@ -116,5 +120,7 @@
             </div>
         </div>
     </main>
+
+    <script src="Js/jogo_10x20.js"></script>
 </body>
 </html>
