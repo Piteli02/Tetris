@@ -472,3 +472,95 @@ CHAMANDO AS FUNCOES
 descer_peca_automaticamente();
 
 
+let timer; // Variável para armazenar o timer
+let seconds = 0, minutes = 0; // Inicialize os segundos e minutos com 0
+let pontos = 0;
+let linhas = 0;
+let nivel = 0;
+let nivelMin = 300;//mudar aqui para modificar de acordo com a velocidade
+
+// Função para atualizar o cronômetro
+function updateTimer() {
+    seconds++;
+    if (seconds == 60) {
+        seconds = 0;
+        minutes++;
+    }
+
+    const display = document.getElementById("cronometro");
+    display.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Função para iniciar o cronômetro
+function startTimer() {
+    timer = setInterval(updateTimer, 1000);
+}
+
+// Iniciar o cronômetro automaticamente quando a página é carregada
+window.addEventListener("load", startTimer);
+
+
+function verificarLinhasCompletas() {
+    let linhasCompletas = 0;
+
+    for (let lin = LINHA - 1; lin >= 0; lin--) {
+        let linhaCompleta = true;
+
+        for (let col = 0; col < COLUNA; col++) {
+            if (tabuleiro[lin][col] === quadradoLivre) {
+                linhaCompleta = false;
+                break;
+            }
+        }
+
+        if(pontos >= nivelMin * nivel){
+            nivel += 1;
+            document.getElementById("nivel").textContent = nivel;
+            velocidade_atual -= 100;
+        }
+
+        if (linhaCompleta) {
+            linhas +=1;
+            pontos += 10;
+            document.getElementById("pontos").textContent = pontos;
+            document.getElementById("linhas").textContent = linhas;
+
+          
+            // Remove a linha completa
+            for (let y = lin; y > 0; y--) {
+                for (let col = 0; col < COLUNA; col++) {
+                    tabuleiro[y][col] = tabuleiro[y - 1][col];
+                }
+            }
+
+            // Preenche a primeira linha com quadrados livres
+            for (let col = 0; col < COLUNA; col++) {
+                tabuleiro[0][col] = quadradoLivre;
+            }
+
+            linhasCompletas++;
+            lin++;
+        }
+    }
+
+    if (linhasCompletas > 0) {
+        // Atualize a tela do jogo após remover as linhas completas
+        definirTabuleiro();
+    }
+    
+}
+
+// Chame a função verificarLinhasCompletas após cada queda de peça bem-sucedida
+Peca.prototype.descer_peca = function () {
+    if (!this.colisaoPeca(0, 1, this.pecaAtiva)) {
+        this.apagar_forma();
+        this.y++;
+        this.desenhar_forma();
+    } else { //peça atingiu algo, necessário gerar outra no topo
+        this.fixacaoPeca();
+        verificarLinhasCompletas(); // Verifique as linhas completas após a fixação da peça
+        peca = gerarPecaAleatoria();
+        console.log("A peça aleatória gerada foi " + this.pecaAtiva);
+    }
+}
+
