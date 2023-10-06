@@ -560,6 +560,7 @@ function verificarLinhasCompletas() {
         //depois de excluir a linha e definir o tabueleiro, falta verificar se a peca especial foi encontrada && eliminada
         //se sim, invertemos o tabuleiro e ativamos verifica_espelhamento para inverter os comandos do jogo
         if (pecasEspeciaisEliminadas % 2 != 0){
+            espelharTabuleiro();
             verifica_espelhado = !verifica_espelhado;
             restaurarVelocidade();
             console.log("valor de verica_espelhado é " + verifica_espelhado)
@@ -581,3 +582,29 @@ Peca.prototype.descer_peca = function () {
     }
 }
 
+function espelharTabuleiro(){
+    //criando outro tabuleiro
+    tabuleiro_espelhado = [];
+    for(lin = 0; lin < LINHA; lin++){
+        tabuleiro_espelhado[lin] = [];
+        for(col = 0; col < COLUNA; col++){
+            tabuleiro_espelhado[lin][col] = quadradoLivre;
+        }
+    }
+    
+    //copiando tudo do original, mas espelhado
+    let col_espelho = COLUNA - 1;
+    for (let lin = LINHA - 1; lin >= 0; lin--){
+
+        for (let col = 0; col < COLUNA; col++, col_espelho --) {
+            tabuleiro_espelhado[lin][col_espelho] = tabuleiro[lin][col];
+        }
+
+        col_espelho = COLUNA -1;
+    }
+
+    tabuleiro = tabuleiro_espelhado;
+    definirTabuleiro(); //IMPORTANTE, SEM ELE, AS PECAS COLIDEM COM OUTRAS INVISÍVEIS
+
+console.log("A cor capturada na ultima linha, coluna 9 é: " + tabuleiro_espelhado[19][0]);
+}
