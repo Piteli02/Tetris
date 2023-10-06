@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 const LINHA  = 20;
 const COLUNA = 10;
 const tamQuadrado = 20;
-const quadradoLivre = "#A6A6A6" //cinza claro
+const quadradoLivre = "#A6A6A6"; //cinza claro
 let   tabuleiro = [];
 
 //gerando o tabuleiro do tetris
@@ -254,7 +254,6 @@ Peca.prototype.descer_peca = function(){
     } else{ //peca atingiu algo, necessario gerar outra no topo
         this.fixacaoPeca();
         peca = gerarPecaAleatoria();
-        console.log("A peca aleatoria gerada foi " + this.pecaAtiva);
     }
 }
 
@@ -502,10 +501,11 @@ window.addEventListener("load", startTimer);
 
 function verificarLinhasCompletas() {
     let linhasCompletas = 0;
-
+    let pecasEspeciaisEliminadas = 0;
+    
     for (let lin = LINHA - 1; lin >= 0; lin--) {
         let linhaCompleta = true;
-
+        
         for (let col = 0; col < COLUNA; col++) {
             if (tabuleiro[lin][col] === quadradoLivre) {
                 linhaCompleta = false;
@@ -519,13 +519,22 @@ function verificarLinhasCompletas() {
             velocidade_atual -= 100;
         }
 
+        
+        if(linhaCompleta){
+            //varrer ultima linha do tabuleiro para contar as pecas especiais encontradas
+            for(i = lin, col = 0; col < COLUNA; col++){
+                if (tabuleiro[i][col] === "orange") { //sinaliza peca especial foi encontrada
+                    pecasEspeciaisEliminadas++;
+                }
+            }
+        }
+        
         if (linhaCompleta) {
             linhas +=1;
             pontos += 10;
             document.getElementById("pontos").textContent = pontos;
             document.getElementById("linhas").textContent = linhas;
 
-          
             // Remove a linha completa
             for (let y = lin; y > 0; y--) {
                 for (let col = 0; col < COLUNA; col++) {
@@ -546,6 +555,15 @@ function verificarLinhasCompletas() {
     if (linhasCompletas > 0) {
         // Atualize a tela do jogo após remover as linhas completas
         definirTabuleiro();
+
+        console.log("O programa detectou que " + pecasEspeciaisEliminadas +" peca_Especial foi eliminada");
+        //depois de excluir a linha e definir o tabueleiro, falta verificar se a peca especial foi encontrada && eliminada
+        //se sim, invertemos o tabuleiro e ativamos verifica_espelhamento para inverter os comandos do jogo
+        if (pecasEspeciaisEliminadas % 2 != 0){
+            verifica_espelhado = !verifica_espelhado;
+            restaurarVelocidade();
+            console.log("valor de verica_espelhado é " + verifica_espelhado)
+        }
     }
     
 }
@@ -560,7 +578,6 @@ Peca.prototype.descer_peca = function () {
         this.fixacaoPeca();
         verificarLinhasCompletas(); // Verifique as linhas completas após a fixação da peça
         peca = gerarPecaAleatoria();
-        console.log("A peça aleatória gerada foi " + this.pecaAtiva);
     }
 }
 
