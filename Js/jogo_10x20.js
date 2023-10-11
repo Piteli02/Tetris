@@ -213,11 +213,41 @@ function Peca(nome_peca, cor){
     this.x = 3;
     this.y = -2;
 }
+const apresentaProximaPeca = document.getElementById("proxima-peca"); 
+let sorteioPecas = [];
+//posicao 0 => proxima a ser jogada fora da fila
+//posicao 1 => representa o numero aleaorio atual, ou seja, peca atual
+//posicao 2 => representa a proxima que cairá no tabuleiro
+//posicao 3 => reservado para guardar mais um numero aleatorio. Quando shift() for chamado, passará a ser 2
+
+
+//preenchendo essa lista com 3 inteiros aleatorios, de 0 a 6
+for(i = 0; i < 3; i++){
+   sorteioPecas[i] = Math.floor(Math.random() * 7);
+}
+
 function gerarPecaAleatoria(){
-    let PecaAleatoria = Math.floor(Math.random() * 7); //apenas testando os parametros. Estou gerando um numero de 0 a 6, então, a cada vez que salvarmos o arquivo, aparecerá uma peca aleatoria
-    return new Peca(pecasJogo[PecaAleatoria][0],   pecasJogo[PecaAleatoria][1]); //instanciando a peça    
-                    //coletando nome         //coletando cor
-                    
+
+
+   let nova_peca = new Peca(pecasJogo[  sorteioPecas[1]  ][0],   pecasJogo[  sorteioPecas[1]  ][1]); //instanciando a peça   
+                               //coletando nome                    //coletando cor
+
+
+   //colocar png indicando a proxima, que acessa sorteioPecas na posicao 2
+   if(sorteioPecas[2] === 0) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_linha.png")'; //peca_I
+   if(sorteioPecas[2] === 1) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_quadrado.png")'; //peca_O
+   if(sorteioPecas[2] === 2) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_l.png")'; //peca_L
+   if(sorteioPecas[2] === 3) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_lazul.png")'; //peca_J
+   if(sorteioPecas[2] === 4) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_t.png")'; //peca_T
+   if(sorteioPecas[2] === 5) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_u.png")'; //peca_u
+   if(sorteioPecas[2] === 6) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_unica.png")'; //peca_especial
+   //gerar aleatorio novo, na posicao 3
+   sorteioPecas[3] = Math.floor(Math.random() * 7);
+
+
+   //remover o primeiro elemento da fila de sorteiroPecas, o que atualiza o indice dos outros elementos
+   sorteioPecas.shift();
+   return nova_peca;
 }
 let peca = gerarPecaAleatoria();
 
