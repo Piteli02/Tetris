@@ -1,9 +1,9 @@
 const canvas = document.getElementById("mirror_tetris");
 const ctx = canvas.getContext("2d");
 
-const LINHA  = 20;
-const COLUNA = 10;
-const tamQuadrado = 20;
+const LINHA  = 44;
+const COLUNA = 22;
+const tamQuadrado = 15;
 const quadradoLivre = "#A6A6A6" //cinza claro
 let   tabuleiro = [];
 
@@ -408,15 +408,15 @@ let seta_para_baixo_press = false;
 
 // Função para manipular eventos de tecla
 function handleKeyPress(event) {
-    // Verifique se a tecla pressionada é uma das setas (cima, baixo, esquerda ou direita)
-    if (event.keyCode >= 37 && event.keyCode <= 40) {
-      // Impedir o comportamento padrão das setas
-      event.preventDefault();
-    }
+  // Verifique se a tecla pressionada é uma das setas (cima, baixo, esquerda ou direita)
+  if (event.keyCode >= 37 && event.keyCode <= 40) {
+    // Impedir o comportamento padrão das setas
+    event.preventDefault();
   }
+}
   
   // Adicione um ouvinte de eventos de tecla ao documento
-  document.addEventListener("keydown", handleKeyPress);
+document.addEventListener("keydown", handleKeyPress);
 
 document.addEventListener("keydown", function(event) {
     if (!verifica_espelhado) {
