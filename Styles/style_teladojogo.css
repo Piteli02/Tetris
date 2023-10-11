@@ -9,6 +9,46 @@
     border:0
 }
 
+#proxima-peca {
+    width: 100px; 
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.peca {
+    margin: 10px auto;
+}
+
+/* Estilos para as diferentes classes de peças (peca-I, peca-O, peca-L, etc.) */
+.peca-I {
+    background-image: url('./Assets/peca_linha.png');
+}
+
+.peca-O {
+    background-image: url('./Assets/peca_quadrado.png'); 
+}
+
+.peca-L {
+    background-image: url('./Assets/peca_l.png');
+}
+.peca-j {
+    background-image: url('./Assets/peca_lazul.png');  
+}
+
+.peca-u {
+    background-image: url('./Assets/peca_u.png'); 
+}
+
+.peca-unica {
+    background-image: url('./Assets/peca_unica.png');
+}
+.peca-t {
+    background-image: url('./Assets/peca_t.png'); 
+}
 body {
     background-color: #707070;
     font-family: 'DM Mono', monospace;
