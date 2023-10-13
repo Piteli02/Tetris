@@ -211,7 +211,7 @@ function Peca(nome_peca, cor){
     this.pecaAtiva = this.nome_peca[this.rotacao_atual];
                 
     //coordenadas
-    this.x = 3;
+    this.x = 9;
     this.y = -2;
 }
 const apresentaProximaPeca = document.getElementById("proxima-peca"); 
