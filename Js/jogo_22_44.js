@@ -561,10 +561,6 @@ function verificarLinhasCompletas() {
         }
         
         if (linhaCompleta) {
-            linhas +=1;
-            pontos += 10;
-            document.getElementById("pontos").textContent = pontos;
-            document.getElementById("linhas").textContent = linhas;
 
             // Remove a linha completa
             for (let y = lin; y > 0; y--) {
@@ -581,6 +577,32 @@ function verificarLinhasCompletas() {
             linhasCompletas++;
             lin++;
         }
+    }
+    switch (linhasCompletas) {
+        case 1:
+            linhas +=1;
+            pontos += 10;
+            document.getElementById("pontos").textContent = pontos;
+            document.getElementById("linhas").textContent = linhas;
+            break;
+        case 2:
+            linhas +=2;
+            pontos += 40;
+            document.getElementById("pontos").textContent = pontos;
+            document.getElementById("linhas").textContent = linhas;
+            break;
+        case 3:
+            linhas +=3;
+            pontos += 90;
+            document.getElementById("pontos").textContent = pontos;
+            document.getElementById("linhas").textContent = linhas;
+            break;
+        case 4:
+            linhas +=4;
+            pontos += 160;
+            document.getElementById("pontos").textContent = pontos;
+            document.getElementById("linhas").textContent = linhas;
+            break;
     }
 
     if (linhasCompletas > 0) {
