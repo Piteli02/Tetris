@@ -6,6 +6,7 @@
     <link href="./Styles/styletam_tabuleiro.css" rel="stylesheet">
     <title>Mirror Tetris</title>
     <style>
+        
     /* CSS para posicionar as imagens sobre as imagens de fundo */
     .tabuleiro {
         position: relative;
@@ -29,20 +30,9 @@
     }
 
 </style>
-    <script>
-        // Função para lidar com a seleção da opção
-        function selecionarOpcao(element) {
-            // Ocultar todos os contêineres de imagem selecionada
-            var selectedContainers = document.querySelectorAll('.tabuleiro .selected-container');
-            selectedContainers.forEach(function(container) {
-                container.style.opacity = 0;
-            });
 
-            // Exibir o contêiner da imagem da opção selecionada
-            var selectedContainer = element.querySelector('.selected-container');
-            selectedContainer.style.opacity = 1;
-        }
-    </script>
+<script src="Js/sel_tam_icone.js"> </script>
+
 </head>
 <body>
     <div class="container">
@@ -72,23 +62,7 @@
         </div>
     </div>
 
-    <script>
-        // Função para iniciar o jogo com base na opção selecionada
-        function iniciarJogo() {
-            var selectedContainers = document.querySelectorAll('.tabuleiro .selected-container');
-            
-            // Verifique qual opção foi selecionada
-            if (selectedContainers[0].style.opacity === '1') {
-                // Opção 22x44 foi selecionada, redirecione para a tela correspondente
-                window.location.href = "tela_jogo_22x40.html";
-            } else if (selectedContainers[1].style.opacity === '1') {
-                // Opção 10x20 foi selecionada, redirecione para a tela correspondente
-                window.location.href = "tela_jogo_10x20.html";
-            } else {
-                // Nenhuma opção selecionada, exiba uma mensagem de erro ou ação padrão.
-                alert("Por favor, selecione um tamanho de tabuleiro.");
-            }
-        }
-    </script>
+    <script src="Js/sel_tam_tabuleiro.js"></script>
+
 </body>
 </html>
