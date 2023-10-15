@@ -1,10 +1,10 @@
 const canvas = document.getElementById("mirror_tetris");
 const ctx = canvas.getContext("2d");
 
-const LINHA  = 20;
-const COLUNA = 10;
-const tamQuadrado = 20;
-const quadradoLivre = "#A6A6A6"; //cinza claro
+const LINHA  = 44;
+const COLUNA = 22;
+const tamQuadrado = 15;
+const quadradoLivre = "#A6A6A6" //cinza claro
 let   tabuleiro = [];
 
 //gerando o tabuleiro do tetris
@@ -213,41 +213,11 @@ function Peca(nome_peca, cor){
     this.x = 3;
     this.y = -2;
 }
-const apresentaProximaPeca = document.getElementById("proxima-peca"); 
-let sorteioPecas = [];
-//posicao 0 => proxima a ser jogada fora da fila
-//posicao 1 => representa o numero aleaorio atual, ou seja, peca atual
-//posicao 2 => representa a proxima que cairá no tabuleiro
-//posicao 3 => reservado para guardar mais um numero aleatorio. Quando shift() for chamado, passará a ser 2
-
-
-//preenchendo essa lista com 3 inteiros aleatorios, de 0 a 6
-for(i = 0; i < 3; i++){
-   sorteioPecas[i] = Math.floor(Math.random() * 7);
-}
-
 function gerarPecaAleatoria(){
-
-
-   let nova_peca = new Peca(pecasJogo[  sorteioPecas[1]  ][0],   pecasJogo[  sorteioPecas[1]  ][1]); //instanciando a peça   
-                               //coletando nome                    //coletando cor
-
-
-   //colocar png indicando a proxima, que acessa sorteioPecas na posicao 2
-   if(sorteioPecas[2] === 0) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_linha.png")'; //peca_I
-   if(sorteioPecas[2] === 1) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_quadrado.png")'; //peca_O
-   if(sorteioPecas[2] === 2) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_l.png")'; //peca_L
-   if(sorteioPecas[2] === 3) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_lazul.png")'; //peca_J
-   if(sorteioPecas[2] === 4) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_t.png")'; //peca_T
-   if(sorteioPecas[2] === 5) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_u.png")'; //peca_u
-   if(sorteioPecas[2] === 6) apresentaProximaPeca.style.backgroundImage = 'url("./Assets/peca_unica.png")'; //peca_especial
-   //gerar aleatorio novo, na posicao 3
-   sorteioPecas[3] = Math.floor(Math.random() * 7);
-
-
-   //remover o primeiro elemento da fila de sorteiroPecas, o que atualiza o indice dos outros elementos
-   sorteioPecas.shift();
-   return nova_peca;
+    let PecaAleatoria = Math.floor(Math.random() * 7); //apenas testando os parametros. Estou gerando um numero de 0 a 6, então, a cada vez que salvarmos o arquivo, aparecerá uma peca aleatoria
+    return new Peca(pecasJogo[PecaAleatoria][0],   pecasJogo[PecaAleatoria][1]); //instanciando a peça    
+                    //coletando nome         //coletando cor
+                    
 }
 let peca = gerarPecaAleatoria();
 
@@ -284,6 +254,7 @@ Peca.prototype.descer_peca = function(){
     } else{ //peca atingiu algo, necessario gerar outra no topo
         this.fixacaoPeca();
         peca = gerarPecaAleatoria();
+        console.log("A peca aleatoria gerada foi " + this.pecaAtiva);
     }
 }
 
@@ -437,15 +408,15 @@ let seta_para_baixo_press = false;
 
 // Função para manipular eventos de tecla
 function handleKeyPress(event) {
-    // Verifique se a tecla pressionada é uma das setas (cima, baixo, esquerda ou direita)
-    if (event.keyCode >= 37 && event.keyCode <= 40) {
-      // Impedir o comportamento padrão das setas
-      event.preventDefault();
-    }
+  // Verifique se a tecla pressionada é uma das setas (cima, baixo, esquerda ou direita)
+  if (event.keyCode >= 37 && event.keyCode <= 40) {
+    // Impedir o comportamento padrão das setas
+    event.preventDefault();
   }
-    
-    // Adicione um ouvinte de eventos de tecla ao documento
-  document.addEventListener("keydown", handleKeyPress);
+}
+  
+  // Adicione um ouvinte de eventos de tecla ao documento
+document.addEventListener("keydown", handleKeyPress);
 
 document.addEventListener("keydown", function(event) {
     if (!verifica_espelhado) {
@@ -543,11 +514,10 @@ window.addEventListener("load", startTimer);
 
 function verificarLinhasCompletas() {
     let linhasCompletas = 0;
-    let pecasEspeciaisEliminadas = 0;
-    
+
     for (let lin = LINHA - 1; lin >= 0; lin--) {
         let linhaCompleta = true;
-        
+
         for (let col = 0; col < COLUNA; col++) {
             if (tabuleiro[lin][col] === quadradoLivre) {
                 linhaCompleta = false;
@@ -561,17 +531,13 @@ function verificarLinhasCompletas() {
             velocidade_atual -= 100;
         }
 
-        
-        if(linhaCompleta){
-            //varrer ultima linha do tabuleiro para contar as pecas especiais encontradas
-            for(i = lin, col = 0; col < COLUNA; col++){
-                if (tabuleiro[i][col] === "orange") { //sinaliza peca especial foi encontrada
-                    pecasEspeciaisEliminadas++;
-                }
-            }
-        }
-        
         if (linhaCompleta) {
+            linhas +=1;
+            pontos += 10;
+            document.getElementById("pontos").textContent = pontos;
+            document.getElementById("linhas").textContent = linhas;
+
+          
             // Remove a linha completa
             for (let y = lin; y > 0; y--) {
                 for (let col = 0; col < COLUNA; col++) {
@@ -587,48 +553,11 @@ function verificarLinhasCompletas() {
             linhasCompletas++;
             lin++;
         }
-
-    }
-    switch (linhasCompletas) {
-        case 1:
-            linhas +=1;
-            pontos += 10;
-            document.getElementById("pontos").textContent = pontos;
-            document.getElementById("linhas").textContent = linhas;
-            break;
-        case 2:
-            linhas +=2;
-            pontos += 40;
-            document.getElementById("pontos").textContent = pontos;
-            document.getElementById("linhas").textContent = linhas;
-            break;
-        case 3:
-            linhas +=3;
-            pontos += 90;
-            document.getElementById("pontos").textContent = pontos;
-            document.getElementById("linhas").textContent = linhas;
-            break;
-        case 4:
-            linhas +=4;
-            pontos += 160;
-            document.getElementById("pontos").textContent = pontos;
-            document.getElementById("linhas").textContent = linhas;
-            break;
     }
 
     if (linhasCompletas > 0) {
         // Atualize a tela do jogo após remover as linhas completas
         definirTabuleiro();
-
-        console.log("O programa detectou que " + pecasEspeciaisEliminadas +" peca_Especial foi eliminada");
-        //depois de excluir a linha e definir o tabueleiro, falta verificar se a peca especial foi encontrada && eliminada
-        //se sim, invertemos o tabuleiro e ativamos verifica_espelhamento para inverter os comandos do jogo
-        if (pecasEspeciaisEliminadas % 2 != 0){
-            espelharTabuleiro();
-            verifica_espelhado = !verifica_espelhado;
-            restaurarVelocidade();
-            console.log("valor de verica_espelhado é " + verifica_espelhado)
-        }
     }
     
 }
@@ -643,32 +572,6 @@ Peca.prototype.descer_peca = function () {
         this.fixacaoPeca();
         verificarLinhasCompletas(); // Verifique as linhas completas após a fixação da peça
         peca = gerarPecaAleatoria();
+        console.log("A peça aleatória gerada foi " + this.pecaAtiva);
     }
-}
-
-function espelharTabuleiro(){
-    //criando outro tabuleiro
-    tabuleiro_espelhado = [];
-    for(lin = 0; lin < LINHA; lin++){
-        tabuleiro_espelhado[lin] = [];
-        for(col = 0; col < COLUNA; col++){
-            tabuleiro_espelhado[lin][col] = quadradoLivre;
-        }
-    }
-    
-    //copiando tudo do original, mas espelhado
-    let col_espelho = COLUNA - 1;
-    for (let lin = LINHA - 1; lin >= 0; lin--){
-
-        for (let col = 0; col < COLUNA; col++, col_espelho --) {
-            tabuleiro_espelhado[lin][col_espelho] = tabuleiro[lin][col];
-        }
-
-        col_espelho = COLUNA -1;
-    }
-
-    tabuleiro = tabuleiro_espelhado;
-    definirTabuleiro(); //IMPORTANTE, SEM ELE, AS PECAS COLIDEM COM OUTRAS INVISÍVEIS
-
-console.log("A cor capturada na ultima linha, coluna 9 é: " + tabuleiro_espelhado[19][0]);
 }
