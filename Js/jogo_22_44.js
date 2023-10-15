@@ -526,6 +526,18 @@ function startTimer() {
     timer = setInterval(updateTimer, 1000);
 }
 
+// Função para manipular eventos de tecla
+function handleKeyPress(event) {
+    // Verifique se a tecla pressionada é uma das setas (cima, baixo, esquerda ou direita)
+    if (event.keyCode >= 37 && event.keyCode <= 40) {
+      // Impedir o comportamento padrão das setas
+      event.preventDefault();
+    }
+  }
+    
+    // Adicione um ouvinte de eventos de tecla ao documento
+  document.addEventListener("keydown", handleKeyPress);
+
 // Iniciar o cronômetro automaticamente quando a página é carregada
 window.addEventListener("load", startTimer);
 
