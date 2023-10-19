@@ -102,7 +102,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: none;
+    overflow-y: hidden;
 }
 
 .container_jogo_principal{
