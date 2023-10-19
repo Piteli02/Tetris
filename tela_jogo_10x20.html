@@ -7,6 +7,10 @@
     <title>Mirror Tetris - 10x20</title>
 </head>
 <body>
+
+    <!--Div para que quando o jogo acabe a tela de fundo fique escura-->
+    <div class="overlay"></div>
+
     <nav>
         <div class="container_voltar">
             <span class="menu_voltar">
@@ -29,6 +33,9 @@
     no Figma com o nome GameScreen2-->
     <main>
         <div class="container">
+
+            <!--Div para que quando o jogo acabe a tela fique escura-->
+            
             <div class="container_jogo_principal">
 
                 <!--Aqui será usada a tag canva-->
@@ -117,6 +124,32 @@
                         <td>#10</td> <td>8000</td> <td>10</td> <td>4:00</td>
                     </tr>
                 </table>
+            </div>
+        </div>
+        <div id="tela-game-over" class="container_game_over">
+            <p>Acabou o jogo</p>
+            
+            <div class="estatisticas_finais">
+                <table>
+                    <tr>
+                        <td class="estatistica_tipo">Pontos</td> <td id="pontuacao-final" class="estatistica_numero">0</td>
+                    </tr>
+
+                    <tr>
+                        <td class="estatistica_tipo">Ranking pessoal</td> <td class="estatistica_numero">X</td>
+                    </tr>
+
+                    <tr>
+                        <td class="estatistica_tipo">Ranking global</td> <td class="estatistica_numero">X</td>
+                    </tr>
+
+                    <tr>
+                        <td class="estatistica_tipo">Tempo de jogo</td> <td id="tempo-final" class="estatistica_numero">00:00</td>
+                    </tr>
+                </table>
+
+                <a href="tela_jogo_10x20.html"><img src="Assets/reiniciar.png" alt="icone de reiniciar jogo"></a>
+                <p>Jogar de novo</p>
             </div>
         </div>
     </main>

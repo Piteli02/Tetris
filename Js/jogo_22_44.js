@@ -387,9 +387,9 @@ Peca.prototype.fixacaoPeca = function(){
             }
             //verificando fim de jogo
             if(this.y + lin < 0){
-                alert("Game Over"); //Quem for fazer tela game over deve alterar essa parte
                 gameOver = true;
                 console.log("valor de gameover eh: "+ gameOver);
+                fimDeJogo();
                 break;
             }
             //pintando o canvas com essa peca que caiu
@@ -672,4 +672,11 @@ function espelharTabuleiro(){
     definirTabuleiro(); //IMPORTANTE, SEM ELE, AS PECAS COLIDEM COM OUTRAS INVISÍVEIS
 
 console.log("A cor capturada na ultima linha, coluna 9 é: " + tabuleiro_espelhado[19][0]);
+}
+
+function fimDeJogo() {
+    document.getElementById("pontuacao-final").textContent = pontos;
+    document.getElementById("tempo-final").textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    document.getElementById("tela-game-over").style.display = "block";
+    document.querySelector('.overlay').style.display = 'block';
 }
