@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 // Comando SQL para criar a tabela 'jogadores'
 $sql1 = "CREATE TABLE jogadores (
-    id UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome_completo VARCHAR(255) NOT NULL,
     data_nascimento DATE,
     telefone VARCHAR(20),
@@ -26,7 +26,7 @@ $sql1 = "CREATE TABLE jogadores (
 
 // Comando SQL para criar a tabela 'partidas'
 $sql2 = "CREATE TABLE partidas (
-    id_partida UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_partida INT AUTO_INCREMENT PRIMARY KEY,
     id_jogador INT,
     pontos int,
     tempo_de_jogo time,
