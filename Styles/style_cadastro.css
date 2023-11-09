@@ -214,27 +214,17 @@ input {
   width: 190px;
 }
 
-.containerCadastro .contentCadastro .cadastrar{
-  background-color: #000;
-  border: none;
-  width: 300px;
-  height: 40px;
-  border-radius: 5px;
-  margin-top: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.botao_cadastro{
+    margin-top: 20px;
+    background-color: black; 
+    color: white;
+    width: 180px; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 16px; 
 }
-
-.containerCadastro .contentCadastro .cadastrar a{
-color: white;
-font-family: 'DM Mono', monospace;
-font-weight: 500;
-font-size: 20px;
-text-decoration: none;
-}
-
 
 .containerCadastro .contentCadastro .containerConta {
   display: flex;
