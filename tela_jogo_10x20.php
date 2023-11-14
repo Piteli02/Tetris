@@ -1,3 +1,9 @@
+<?php
+
+include 'verifica_logado.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +13,10 @@
     <title>Mirror Tetris - 10x20</title>
 </head>
 <body>
+
+    <!--Div para que quando o jogo acabe a tela de fundo fique escura-->
+    <div class="overlay"></div>
+
     <nav>
         <div class="container_voltar">
             <span class="menu_voltar">
@@ -16,11 +26,11 @@
 
         <div class="container_opcoes">
             <span class="menu_editarprofile">
-                <a href="editar_profile.html"><img src="Assets/pessoa_2.png" alt="icone de pessoa para acessar o editar profile"></a> <!--feito-->
+                <a href="editar_profile.php"><img src="Assets/pessoa_2.png" alt="icone de pessoa para acessar o editar profile"></a> <!--feito-->
             </span>
 
             <span class="menu_ranking">
-                <a href="ranking_global.html"><img src="Assets/trofeu_5.png" alt="icone de trofeu para acessar o ranking global"></a> <!--feito-->
+                <a href="ranking_global.php"><img src="Assets/trofeu_5.png" alt="icone de trofeu para acessar o ranking global"></a> <!--feito-->
             </span>
         </div>
     </nav>
@@ -29,15 +39,14 @@
     no Figma com o nome GameScreen2-->
     <main>
         <div class="container">
-            
+
             <!--Div para que quando o jogo acabe a tela fique escura-->
-            <div class="overlay"></div>
             
             <div class="container_jogo_principal">
 
                 <!--Aqui será usada a tag canva-->
                 <div class="container_tabuleiro">
-                    <canvas id="mirror_tetris" width="330" height="660"></canvas>
+                    <canvas id="mirror_tetris" width="200" height="400"></canvas>
                 </div>
 
                 <div class="container_estatisticas">
@@ -145,12 +154,12 @@
                     </tr>
                 </table>
 
-                <a href="tela_jogo_22x40.html"><img src="Assets/reiniciar.png" alt="icone de reiniciar jogo"></a>
+                <a href="tela_jogo_10x20.php"><img src="Assets/reiniciar.png" alt="icone de reiniciar jogo"></a>
                 <p>Jogar de novo</p>
             </div>
         </div>
     </main>
 
-    <script src="Js/jogo_22_44.js"></script>
+    <script src="Js/jogo_10x20.js"></script>
 </body>
 </html>

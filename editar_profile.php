@@ -1,3 +1,9 @@
+<?php
+
+include 'verifica_logado.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +84,7 @@
                 </div>-->
                 
                 <div class="cadastrar">
-                    <a href="tela_jogo_22x40.html">Atualizar</a>
+                    <a href="tela_jogo_22x40.php">Atualizar</a>
                 </div>
             </form> <!--ACTION SOMENTE VISUAL, COLOCAR AQUI NO FUTURO O CAMINHO PARA ONDE OS DADOS COLETADOS SERÃO ENVIADOS-->
             </div>

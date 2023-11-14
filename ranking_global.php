@@ -1,3 +1,9 @@
+<?php
+
+include 'verifica_logado.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

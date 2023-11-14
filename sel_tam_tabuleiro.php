@@ -13,7 +13,7 @@ include 'verifica_logado.php';
     <title>Mirror Tetris</title>
     <style>
         
-    /* CSS para posicionar as imagens sobre as imagens de fundo */
+    /* CSS para posicionar as imagens sobre as imagens de fundo e botão de voltar*/
     .tabuleiro {
         position: relative;
         
@@ -35,12 +35,40 @@ include 'verifica_logado.php';
         z-index: 1; /* Certifique-se de que o contêiner da imagem selecionada está acima da imagem de fundo */
     }
 
+    nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5%;
+    margin-bottom: 0;
+}
+
+.menu_voltar a {
+    background-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+}
+
 </style>
 
 <script src="Js/sel_tam_icone.js"> </script>
 
 </head>
+
 <body>
+    <nav>
+        <div class="container_voltar">
+            <span class="menu_voltar">
+                <a href="logout.php">Voltar</a>
+            </span>
+        </div>
+    </nav>
+    
     <div class="container">
         <div class="segundoback"> 
             <section class="title">
