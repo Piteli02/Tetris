@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cpf = $_POST["Cpf"];
     $email = $_POST["Email_usuario"];
     $username = $_POST["Username"];
-    $senha = password_hash($_POST["Senha"], PASSWORD_BCRYPT); //hash
+    $senha = $_POST["Senha"]; //tirei a criptografia por enquanto
 
     $conn = new mysqli("localhost", "root", "admin", "tetris"); //PARA CONFIGURAR O XAMPP, DA START NO MYSQL, DEPOIS CLIQUE EM SHELL, E, NO PROMPT, DIGITE: mysqladmin -u root password
                                                                 //DEFINA SENHA PARA: admin
@@ -29,20 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    /*
     
-    $stmt = $conn->prepare("INSERT INTO jogadores (nome_completo, data_nascimento, telefone, cpf, email, username, senha) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssssss", $nome, $dataNascimento, $telefone, $cpf, $email, $username, $senha);
-
-    if ($stmt->execute()) {
-        // Redirecionar para a página de login
-        header("Location: index.html");
-    } else {
-        echo "Erro ao cadastrar o jogador: " . $conn->error;
-    }
-
-    $stmt->close();
-    */
 }
 
 $conn->close();
