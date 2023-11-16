@@ -34,66 +34,20 @@ include 'verifica_logado.php';
                 <h1>Ranking</h1>
                 <div class="line"></div>
                 <div class="tableRanking">
+                <form id="dadosForm" action="ranking.php" method="post">
+                    <input type="hidden" name="pontos" id="pontuacao-hidden" value="">
+                    <input type="hidden" name="nivel" id="nivel-hidden" value="">
+                    <input type="hidden" name="tempo_de_jogo" id="tempo-hidden" value="">
+                    <input type="hidden" name="tipo_partida" id="tempo-hidden" value="">
+                </form>
                     <table>
                         <tr class="no_background">
-                            <th>Posição</th><th>Usuário</th> <th>Pontos</th> <th>Nível</th> <th>Tempo</th>
+                            <th>Posição</th><th>Usuário</th> <th>Pontos</th> <th>Nível</th> <th>Tempo</th> <th>Tipo</th>
                         </tr>
-    
-                        <tr>
-                            <td style="width: 50px;"><i class="fa-solid fa-trophy"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td><td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-    
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>
-                        
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>   
-
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>   
-
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>   
-
-                        <tr>
-                            <td><i class="fa-solid fa-medal"></i></td> <td>exemplo</td> <td>8000</td> <td>777</td> <td>20:00</td>
-                        </tr>   
+                        <?php
+                            include 'ranking_global_pag.php';
+                        ?>
+                     
                     </table>
                 </div>
             </div>
