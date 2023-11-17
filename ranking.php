@@ -10,7 +10,7 @@ if (!isset($_SESSION['nome_completo'])) {
 // Inicia a conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
-$password = "R00t@DuDu@2023";
+$password = "";
 $dbname = "Tetris";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
