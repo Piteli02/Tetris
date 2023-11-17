@@ -52,7 +52,8 @@ if ($result->num_rows > 0) {
             // Verifica se o ID do jogador está definido
             if ($id_jogador !== null) {
                 // Insere os dados diretamente no banco de dados
-                $sqlInsert = "INSERT INTO partidas (id_jogador, tipo_partida, pontos, nivel, tempo_de_jogo) VALUES ('$id_jogador', '1', '$pontuacao', '$nivel', '$tempo')";
+                $sqlInsert = "INSERT INTO partidas (id_jogador, tipo_partida, pontos, tempo_de_jogo, nivel) VALUES ('$id_jogador', '1', '$pontuacao', '$tempo', '$nivel')";
+                //$sqlInsert = "INSERT INTO partidas (id_jogador, tipo_partida, pontos, nivel, tempo_de_jogo) VALUES ('$id_jogador', '1', '$pontuacao', '$nivel', '$tempo')";
                 if ($conn->query($sqlInsert) === TRUE) {
                     echo "Dados inseridos com sucesso!";
         

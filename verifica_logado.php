@@ -13,7 +13,7 @@ if (!isset($_SESSION['nome_completo'])) {
 $nome_completo = $_SESSION['nome_completo'];
 
 // Conecta ao banco de dados
-$conn = new mysqli("localhost", "root", "", "tetris");
+$conn = new mysqli("localhost", "root", "", "Tetris");
 
 // Verifica a conexão
 if ($conn->connect_error) {

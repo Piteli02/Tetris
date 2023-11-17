@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "tetris";
+$database = "Tetris";
 
 //conectar
 $conn = new mysqli($servername, $username, $password, $database);
@@ -80,6 +80,22 @@ if ($tableExists->num_rows == 0) {
     }
 } else {
     echo "A tabela já existe!<br>";
+}
+
+$query = "SHOW COLUMNS FROM partidas LIKE 'posicao_ranking'";
+$result = $conn->query($query);
+
+if ($result->num_rows == 0) {
+    // A coluna não existe, então podemos adicioná-la
+    $alterTableQuery = "ALTER TABLE partidas ADD COLUMN posicao_ranking INT AFTER pontos";
+
+    if ($conn->query($alterTableQuery) === TRUE) {
+        echo "Coluna 'posicao_ranking' adicionada com sucesso!<br>";
+    } else {
+        echo "Erro ao adicionar coluna: " . $conn->error . "<br>";
+    }
+} else {
+    echo "A coluna 'posicao_ranking' já existe!<br>";
 }
 
 // Comando SQL para criar a tabela 'jogadores'

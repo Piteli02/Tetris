@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["Username"];
     $senha = $_POST["Senha"]; //tirei a criptografia por enquanto
 
-    $conn = new mysqli("localhost", "root", "", "tetris"); //PARA CONFIGURAR O XAMPP, DA START NO MYSQL, DEPOIS CLIQUE EM SHELL, E, NO PROMPT, DIGITE: mysqladmin -u root password
+    $conn = new mysqli("localhost", "root", "", "Tetris"); //PARA CONFIGURAR O XAMPP, DA START NO MYSQL, DEPOIS CLIQUE EM SHELL, E, NO PROMPT, DIGITE: mysqladmin -u root password
                                                                 //DEFINA SENHA PARA: admin
     
     if ($conn->connect_error) {

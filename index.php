@@ -8,7 +8,7 @@ if (isset($_POST['Email_usuario']) && isset($_POST['Senha'])) {
     }
 
     // Seleciona o banco de dados
-    $conn->select_db("tetris");
+    $conn->select_db("Tetris");
 
     $Email_usuario = $conn->real_escape_string($_POST['Email_usuario']);
     $Senha = $conn->real_escape_string($_POST['Senha']);
