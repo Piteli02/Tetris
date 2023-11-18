@@ -108,15 +108,6 @@
                     <tr>
                         <td class="estatistica_tipo">Pontos</td> <td id="pontuacao-final" class="estatistica_numero">0</td>
                     </tr>
-
-                    <tr>
-                        <td class="estatistica_tipo">Ranking pessoal</td> <td class="estatistica_numero">X</td>
-                    </tr>
-
-                    <tr>
-                        <td class="estatistica_tipo">Ranking global</td> <td class="estatistica_numero">X</td>
-                    </tr>
-
                     <tr>
                         <td class="estatistica_tipo">Tempo de jogo</td> <td id="tempo-final" class="estatistica_numero">00:00</td>
                     </tr>
