@@ -5,7 +5,7 @@ if (!isset($_SESSION['nome_completo'])) {
     die("Você precisa estar logado para acessar essa página. <p><a href=\"index.php\">Login</a></p>");
 }
 
-$conexao = new mysqli("localhost", "root", "R00t@DuDu@2023", "tetris");
+$conexao = new mysqli("localhost", "root", "", "Tetris");
 
 if ($conexao->connect_error) {
     die("Conexão falhou: " . $conexao->connect_error);
@@ -67,14 +67,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         // Verificar se a declaração preparada está aberta antes de fechar
-        if ($stmtUpdate->stmt_id !== null) {
+        if ($stmtUpdate->$stmt_id !== null) {
             // Fechar a declaração preparada
             $stmtUpdate->close();
         }
         
         
         // Fechar a declaração preparada
-        if ($stmtUpdate->stmt_id !== null) {
+        if ($stmtUpdate->$stmt_id !== null) {
             $stmtUpdate->close();
         }
     } else {

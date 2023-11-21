@@ -1,11 +1,11 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "R00t@DuDu@2023";
+$password = "";
 $dbname = "Tetris";
 
 //conectar
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 
 if ($conn->connect_error) {
@@ -13,11 +13,11 @@ if ($conn->connect_error) {
 }
 
 // Verifica se o banco de dados existe
-$result = $conn->query("SHOW DATABASES LIKE '$database'");
+$result = $conn->query("SHOW DATABASES LIKE '$dbname'");
 
 if ($result->num_rows == 0) {
     // O banco de dados não existe, então podemos criá-lo
-    $createDB = "CREATE DATABASE $database";
+    $createDB = "CREATE DATABASE $dbname";
     if ($conn->query($createDB) === TRUE) {
         echo "Banco de dados criado com sucesso!<br>";
     } else {
@@ -28,7 +28,7 @@ if ($result->num_rows == 0) {
 }
 
 // Seleciona o banco de dados
-$conn->select_db($database);
+$conn->select_db($dbname);
 
 // Verifica se a tabela existe
 $tableName1 = "jogadores";

@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["Email_usuario"];
     $username = $_POST["Username"];
     $senha = $_POST["Senha"]; //tirei a criptografia por enquanto
+    $senhaConfirm = $_POST["Senha_usuario"];
 
     $conn = new mysqli("localhost", "root", "", "Tetris"); //PARA CONFIGURAR O XAMPP, DA START NO MYSQL, DEPOIS CLIQUE EM SHELL, E, NO PROMPT, DIGITE: mysqladmin -u root password
                                                                 //DEFINA SENHA PARA: admin
@@ -20,8 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO jogadores (nome_completo, data_nascimento, telefone, cpf, email, username, senha)
-    VALUES ('$nome', '$dataNascimento', '$telefone', '$cpf', '$email', '$username', '$senha')";
+    if ($senha === $senhaConfirm) {
+            $sql = "INSERT INTO jogadores (nome_completo, data_nascimento, telefone, cpf, email, username, senha)
+            VALUES ('$nome', '$dataNascimento', '$telefone', '$cpf', '$email', '$username', '$senha')";
+    } else {
+        echo "<script>window.alert('As senhas são diferentes! Por favor, tente novamente.')</script>";
+        header("Location: ./cadastro.php");
+    }
+       
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
