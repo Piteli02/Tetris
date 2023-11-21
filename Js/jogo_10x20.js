@@ -673,9 +673,59 @@ function espelharTabuleiro(){
 console.log("A cor capturada na ultima linha, coluna 9 é: " + tabuleiro_espelhado[19][0]);
 }
 
+
+// Adicione uma variável global para rastrear se a solicitação está em andamento
+let isRequesting = false;
+
 function fimDeJogo() {
     document.getElementById("pontuacao-final").textContent = pontos;
-    document.getElementById("tempo-final").textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    var tempo_de_jogo = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    document.getElementById("tempo-final").textContent = tempo_de_jogo;
     document.getElementById("tela-game-over").style.display = "block";
     document.querySelector('.overlay').style.display = 'block';
+
+    // Envie dados para o servidor
+    enviarDados(pontos, nivel, tempo_de_jogo);
+}
+
+// Função para enviar dados para o servidor
+function enviarDados(pontos, nivel, tempo_de_jogo) {
+    // Verifique se uma solicitação já está em andamento
+    if (isRequesting) {
+        return;
+    }
+
+    // Ative a flag de solicitação
+    isRequesting = true;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "ranking.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                console.log("Requisição bem-sucedida:", xhr.responseText);
+                // Faça algo com a resposta do servidor, se necessário
+            } else {
+                console.error("Erro na requisição:", xhr.status, xhr.statusText);
+                // Lidar com erros de requisição aqui
+            }
+
+            // Após a conclusão da operação, redefina a flag de solicitação
+            isRequesting = false;
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error("Erro de rede ao enviar a requisição.");
+        // Lidar com erros de rede aqui
+
+        // Após a conclusão da operação, redefina a flag de solicitação
+        isRequesting = false;
+    };
+
+    // Envie os dados para o PHP
+    var data = "pontos=" + pontos + "&nivel=" + nivel + "&tempo_de_jogo=" + tempo_de_jogo;
+    xhr.send(data);
 }

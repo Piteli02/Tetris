@@ -1,3 +1,9 @@
+<?php
+
+include 'verifica_logado.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,17 +16,17 @@
     <nav>
         <div class="container_voltar">
             <span class="menu_voltar">
-                <a href="sel_tam_tabuleiro.html">Voltar</a>
+                <a href="sel_tam_tabuleiro.php">Voltar</a>
             </span>
         </div>
 
         <div class="container_opcoes">
             <span class="menu_editarprofile">
-                <a href="editar_profile.html"><img src="Assets/pessoa_2.png" alt="icone de pessoa para acessar o editar profile"></a> <!--feito-->
+                <a href="editar_profile.php"><img src="Assets/pessoa_2.png" alt="icone de pessoa para acessar o editar profile"></a> <!--feito-->
             </span>
 
             <span class="menu_ranking">
-                <a href="ranking_global.html"><img src="Assets/trofeu_5.png" alt="icone de trofeu para acessar o ranking global"></a> <!--feito-->
+                <a href="ranking_global.php"><img src="Assets/trofeu_5.png" alt="icone de trofeu para acessar o ranking global"></a> <!--feito-->
             </span>
         </div>
     </nav>
@@ -76,50 +82,22 @@
             <div class="container_ranking_pessoal">
                 <p>Ranking pessoal</p>
                 <hr>
+                <form id="dadosForm" action="ranking_22x44.php" method="post">
+                    <input type="hidden" name="id_jogador" id="nivel-hidden" value="">
+                    <input type="hidden" name="tipo_partida" id="tempo-hidden" value="">
+                    <input type="hidden" name="pontos" id="pontuacao-hidden" value="">
+                    <input type="hidden" name="nivel" id="nivel-hidden" value="">
+                    <input type="hidden" name="tempo_de_jogo" id="tempo-hidden" value="">
+                </form>
                 <table>
                     <tr>
                     <th>Posição</th><th>Pontos</th> <th>Nível</th> <th>Tempo</th>
                     </tr>
-            
-                    <tr class="rankings_tabela">
-                        <td><img src="Assets/trofeu_5.png" alt="imagem de trofeu 1"></td> <td>22869</td> <td>99</td> <td>20:00</td>
-                    </tr>
-            
-                    <tr class="rankings_tabela">
-                        <td><img src="Assets/trofeu_2.png" alt="imagem de trofeu 2"></td> <td>21869</td> <td>89</td> <td>15:00</td>
-                    </tr>
-            
-                    <tr class="rankings_tabela">
-                        <td><img src="Assets/trofeu_3.png" alt="imagem de trofeu 3"></td> <td>20869</td> <td>73</td> <td>12:00</td>
-                    </tr>
-            
-                    <tr class="rankings_tabela">
-                        <td>#4</td> <td>19699</td> <td>77</td> <td>10:00</td>
-                    </tr>
-            
-                    <tr class="rankings_tabela">
-                        <td>#5</td> <td>18699</td> <td>69</td> <td>9:00</td>
-                    </tr>
-            
-                    <tr class="rankings_tabela">
-                        <td>#6</td> <td>17699</td> <td>65</td> <td>8:00</td>
-                    </tr>
-            
-                    <tr class="rankings_tabela">
-                        <td>#7</td> <td>16669</td> <td>62</td> <td>7:00</td>
-                    </tr>
-            
-                    <tr class="rankings_tabela">
-                        <td>#8</td> <td>15669</td> <td>50</td> <td>6:00</td>
-                    </tr>
-                    
-                    <tr class="rankings_tabela">
-                        <td>#9</td> <td>12689</td> <td>30</td> <td>5:00</td>
-                    </tr>
+                    <?php
+                    include 'ranking_22x44.php';
+                    ?>
 
-                    <tr class="rankings_tabela">
-                        <td>#10</td> <td>8000</td> <td>10</td> <td>4:00</td>
-                    </tr>
+                   
                 </table>
             </div>
         </div>
@@ -131,21 +109,12 @@
                     <tr>
                         <td class="estatistica_tipo">Pontos</td> <td id="pontuacao-final" class="estatistica_numero">0</td>
                     </tr>
-
-                    <tr>
-                        <td class="estatistica_tipo">Ranking pessoal</td> <td class="estatistica_numero">X</td>
-                    </tr>
-
-                    <tr>
-                        <td class="estatistica_tipo">Ranking global</td> <td class="estatistica_numero">X</td>
-                    </tr>
-
                     <tr>
                         <td class="estatistica_tipo">Tempo de jogo</td> <td id="tempo-final" class="estatistica_numero">00:00</td>
                     </tr>
                 </table>
 
-                <a href="tela_jogo_22x40.html"><img src="Assets/reiniciar.png" alt="icone de reiniciar jogo"></a>
+                <a href="tela_jogo_22x40.php"><img src="Assets/reiniciar.png" alt="icone de reiniciar jogo"></a>
                 <p>Jogar de novo</p>
             </div>
         </div>
