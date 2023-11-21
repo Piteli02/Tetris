@@ -11,9 +11,14 @@ include 'verifica_logado.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./Styles/styletam_tabuleiro.css" rel="stylesheet">
     <title>Mirror Tetris</title>
-    <style>
+    <style>   
         
     /* CSS para posicionar as imagens sobre as imagens de fundo e botão de voltar*/
+    @font-face {
+    font-family: 'DM Mono';
+    src: url('fonts/DMMono-Regular.ttf') format('truetype'); 
+    }
+
     .tabuleiro {
         position: relative;
         
@@ -52,6 +57,7 @@ include 'verifica_logado.php';
     text-decoration: none;
     color: white;
     font-size: 30px;
+    font-family: 'DM Mono';
 }
 
 </style>
