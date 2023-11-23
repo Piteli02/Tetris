@@ -31,17 +31,13 @@ include 'verifica_logado.php';
         </div>
     </nav>
 
-    <!--servirá de conteiner para todo o quadrado central da pagina, que foi projetada
-    no Figma com o nome GameScreen2-->
     <main>
         <div class="container">
             
-            <!--Div para que quando o jogo acabe a tela fique escura-->
             <div class="overlay"></div>
             
             <div class="container_jogo_principal">
 
-                <!--Aqui será usada a tag canva-->
                 <div class="container_tabuleiro">
                     <canvas id="mirror_tetris" width="330" height="660"></canvas>
                 </div>

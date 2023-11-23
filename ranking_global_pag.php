@@ -1,6 +1,5 @@
 <?php
 
-// Inicia a conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -8,12 +7,10 @@ $dbname = "Tetris";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verifica a conexão
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
 }
 
-// Consulta para obter os dados do ranking global com o nome do jogador
 $sqlRanking = "SELECT partidas.*, jogadores.nome_completo 
                FROM partidas 
                INNER JOIN jogadores ON partidas.id_jogador = jogadores.id
@@ -21,7 +18,6 @@ $sqlRanking = "SELECT partidas.*, jogadores.nome_completo
 
 $resultRanking = $conn->query($sqlRanking);
 
-// Exibir os dados do ranking global na tabela
 $posicao = 1;
 while ($rowRanking = $resultRanking->fetch_assoc()) {
     echo "<tr class='rankings_tabela'>";
@@ -30,6 +26,5 @@ while ($rowRanking = $resultRanking->fetch_assoc()) {
     $posicao++;
 }
 
-// Fechar a conexão com o banco de dados
 $conn->close();
 ?>

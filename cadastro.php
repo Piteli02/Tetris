@@ -1,7 +1,5 @@
 <?php
-    // !! RESOLVIDO !!  
-   // include 'criar_bd.php'; // EXECUTAR AMBOS SOMENTE 1 VEZ POR EXECUÇÃO, ATÉ FAZERMOS UM SCRIPT A PARTE
-    include 'bd.php'; //OU SEJA, NO PRIMEIRO TESTE DO BOTÃO DO COMMIT, COLOQUE ESSES INCLUDES. NOS SEGUINTES, PODE REMOVER PQ AÍ NÃO VAI FICAR TENTANDO CRIAR VARIOS BDS
+    include 'bd.php'; 
 
 //coletando tag form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -11,12 +9,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cpf = $_POST["Cpf"];
     $email = $_POST["Email_usuario"];
     $username = $_POST["Username"];
-    $senha = $_POST["Senha"]; //tirei a criptografia por enquanto
+    $senha = $_POST["Senha"]; 
     $senhaConfirm = $_POST["Senha_usuario"];
 
-    $conn = new mysqli("localhost", "root", "", "Tetris"); //PARA CONFIGURAR O XAMPP, DA START NO MYSQL, DEPOIS CLIQUE EM SHELL, E, NO PROMPT, DIGITE: mysqladmin -u root password
-                                                                //DEFINA SENHA PARA: admin
-    
+    $conn = new mysqli("localhost", "root", "", "Tetris"); 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }

@@ -38,9 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $novo_email = $_POST['email_usuario'] ?? '';
     $nova_senha = $_POST['senha'] ?? '';
 
-    // Verificar se a senha foi fornecida e comparar com a senha existente
     if (!empty($nova_senha) && password_verify($nova_senha, $row['senha'])) {
-        // Atualiza os valores no banco de dados
         $sqlUpdate = "UPDATE jogadores SET 
             nome_completo = ?, 
             data_nascimento = ?, 
@@ -56,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmtUpdate->affected_rows > 0) {
                 echo "Dados atualizados com sucesso!";
         
-                // Redirecionar para a página desejada
                 header("Location: sel_tam_tabuleiro.php");
                 exit();
             } else {
@@ -66,14 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Erro na atualização: " . $stmtUpdate->error;
         }
         
-        // Verificar se a declaração preparada está aberta antes de fechar
         if ($stmtUpdate->$stmt_id !== null) {
-            // Fechar a declaração preparada
             $stmtUpdate->close();
         }
         
         
-        // Fechar a declaração preparada
         if ($stmtUpdate->$stmt_id !== null) {
             $stmtUpdate->close();
         }
@@ -102,13 +96,11 @@ $conexao->close();
                 <div class="contentCadastro">
                     <h1>Atualizar</h1>
                     <div class="line"></div>
-                    <!--Nome-->
                     <div class="cadastro_nome">
                         <label for="nome_completo">Nome Completo </label> 
                         <input type="text" id="nome_completo" name="nome_completo" placeholder="joão da silva" value="<?= $row['nome_completo'] ?>" required>
                     </div>
     
-                    <!-- Outros campos do formulário -->
                     <div class="cadastro_dtnasc-tel">
                         <div class="dt_nascimento">
                             <label for="data_nascimento">Data de Nascimento</label>
@@ -126,19 +118,16 @@ $conexao->close();
                         <input type="text" id="cpf" name="cpf" placeholder="XXX.XXX.XXX-XX" value="<?= $row['cpf'] ?>" readonly>
                     </div>
                     
-                    <!--Email-->
                     <div class="cadastro_email">
                         <label for="email_usuario">Email</label>
                         <input type="email" id="email_usuario" name="email_usuario" placeholder="exemplo@email.com" value="<?= $row['email'] ?>" required>
                     </div>
                     
-                    <!--Username-->
                     <div class="cadastro_username">
                         <label for="username">Username </label> 
                         <input type="text" id="username" name="username" placeholder="joaozinMilgrau" value="<?= $row['username'] ?>" required readonly>
                     </div>
-    
-                    <!--Senha-->
+                    
                     <div class="senha">
                         <div class="cadastro_senha">
                             <label for="senha">Senha</label>

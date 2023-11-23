@@ -13,7 +13,6 @@ include 'verifica_logado.php';
     <title>Mirror Tetris</title>
     <style>
         
-    /* CSS para posicionar as imagens sobre as imagens de fundo e botão de voltar*/
     .tabuleiro {
         position: relative;
         
@@ -29,10 +28,10 @@ include 'verifica_logado.php';
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        max-width: 50%; /* Defina o tamanho máximo desejado, como 50% */
-        max-height: 50%; /* Defina o tamanho máximo desejado, como 50% */
-        opacity: 0; /* Inicialmente, a imagem está invisível */
-        z-index: 1; /* Certifique-se de que o contêiner da imagem selecionada está acima da imagem de fundo */
+        max-width: 50%; 
+        max-height: 50%; 
+        opacity: 0; 
+        z-index: 1; 
     }
 
     nav {

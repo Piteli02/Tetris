@@ -18,12 +18,9 @@ include 'verifica_logado.php';
 
         <button id="btn_voltar">Voltar</button>
 
-        <!-- Código para fazer o botão funcionar -->
         <script>
-            // Pega o botão pelo id dele
             var botao_voltar = document.getElementById("btn_voltar");
         
-            // Função responsável para levar para a outra página
             botao_voltar.onclick = function() {
                 window.history.back();
             };

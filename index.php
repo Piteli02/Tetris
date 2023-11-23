@@ -2,12 +2,10 @@
 include 'criar_bd.php';
 
 if (isset($_POST['Email_usuario']) && isset($_POST['Senha'])) {
-    // Verifique se a conexão foi estabelecida com sucesso
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Seleciona o banco de dados
     $conn->select_db("Tetris");
 
     $Email_usuario = $conn->real_escape_string($_POST['Email_usuario']);
@@ -72,7 +70,6 @@ if (isset($_POST['Email_usuario']) && isset($_POST['Senha'])) {
                     </div>
                 </form>
 
-                <!-- Mensagem de erro (email ou senha incorretos) -->
                 <?php if (!empty($erro_login)): ?>
                     <p style="color: red; display: flex; justify-content: center;"><?php echo $erro_login; ?></p>
                 <?php endif; ?>
